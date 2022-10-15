@@ -10,3 +10,8 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+      
+eureka:
+ client:
+   serviceUrl:
+     defaultZone: https://travel-agency-discovery.herokuapp.com/eureka/
