@@ -12,7 +12,7 @@ servers:
 paths:
   /v1/propositions:
     post:
-      operationId: TODO
+      operationId: getAvailableProposition
       description: Returns all available travel propositions
       tags:
         - Proposition
@@ -53,13 +53,15 @@ components:
           description: City of departure
           example: Kyiv
         startDate:
-          type: date
+          type: string
+          format: date
           description: Travel start date
-          example: 30-09-2022
+          example: 2022-09-30
         endDate:
-          type: date
+          type: string
+          format: date
           description: Travel end date
-          example: 10-10-2022
+          example: 2022-10-10
     Proposition:
       type: object
       properties:
@@ -72,13 +74,15 @@ components:
           description: City name
           example: Bukovel
         startDate:
-          type: date
+          type: string
+          format: date
           description: Travel start date
-          example: 30-09-2022
+          example: 2022-09-30
         endDate:
-          type: date
+          type: string
+          format: date
           description: Travel end date
-          example: 10-10-2022
+          example: 2022-10-10
         hotels:
           type: array
           description: Available hotels
@@ -136,7 +140,7 @@ components:
         class:
           type: string
           description: Transport class
-          enum: [Economy, Business, First]
+          enum: [ Economy, Business, First ]
           example: Economy
         countryFrom:
           type: string
@@ -155,9 +159,10 @@ components:
           description: City of arrival
           example: Bukovel
         flightDate:
-          type: date
+          type: string
+          format: date
           description: Flight date
-          example: "30-09-2022"
+          example: 2022-09-30
         price:
           type: integer
           description: Flight ticket price
