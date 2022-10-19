@@ -2,5 +2,6 @@ server:
   port: 9999
 eureka:
   client:
+    registerWithEureka: false
     serviceUrl:
       defaultZone: https://travel-agency-discovery.herokuapp.com/eureka/
