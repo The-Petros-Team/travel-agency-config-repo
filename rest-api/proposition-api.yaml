@@ -1,0 +1,169 @@
+openapi: 3.0.3
+info:
+  title: Proposition Service
+  description: Proposition Service
+  contact:
+    name: Petros Team
+  version: 1.0.0.
+servers:
+  - url: https://localhost:9090
+    description: Local server
+
+paths:
+  /v1/propositions:
+    post:
+      operationId: getAvailableProposition
+      description: Returns all available travel propositions
+      tags:
+        - Proposition
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PropositionRequest'
+      responses:
+        200:
+          description: returns all available travel proposition
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Proposition'
+
+components:
+  schemas:
+    PropositionRequest:
+      type: object
+      description: Proposition request
+      properties:
+        countryTo:
+          type: string
+          description: Country of arrival
+          example: Ukraine
+        cityTo:
+          type: string
+          description: City of arrival
+          example: Bukovel
+        countryFrom:
+          type: string
+          description: Country of departure
+          example: Ukraine
+        cityFrom:
+          type: string
+          description: City of departure
+          example: Kyiv
+        startDate:
+          type: string
+          format: date
+          description: Travel start date
+          example: 2022-09-30
+        endDate:
+          type: string
+          format: date
+          description: Travel end date
+          example: 2022-10-10
+    Proposition:
+      type: object
+      properties:
+        country:
+          type: string
+          description: Country name
+          example: Ukraine
+        city:
+          type: string
+          description: City name
+          example: Bukovel
+        startDate:
+          type: string
+          format: date
+          description: Travel start date
+          example: 2022-09-30
+        endDate:
+          type: string
+          format: date
+          description: Travel end date
+          example: 2022-10-10
+        hotels:
+          type: array
+          description: Available hotels
+          items:
+            $ref: '#/components/schemas/Hotel'
+    Hotel:
+      type: object
+      description: Hotel
+      properties:
+        id:
+          type: integer
+          description: Hotel Id
+          example: 1
+        name:
+          type: string
+          description: Hotel name
+          example: Radisson
+        stars:
+          type: integer
+          description: Hotel rating
+          minimum: 1
+          maximum: 5
+          example: 5
+        description:
+          type: string
+          description: Hotel description
+          example: Top Hotel
+        available:
+          type: boolean
+          description: Availability of the hotel
+          example: true
+        price:
+          $ref: '#/components/schemas/Price'
+        tickets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ticket'
+    Price:
+      type: object
+      description: Hotel price
+      properties:
+        value:
+          type: integer
+          description: Amount of money
+          example: 1000
+        currency:
+          type: string
+          description: Money currency
+          enum: [ UAH, EUR, USD ]
+          example: USD
+    Ticket:
+      type: object
+      description: Flight ticket
+      properties:
+        class:
+          type: string
+          description: Transport class
+          enum: [ Economy, Business, First ]
+          example: Economy
+        countryFrom:
+          type: string
+          description: Country of departure
+          example: Ukraine
+        cityFrom:
+          type: string
+          description: City of departure
+          example: Kyiv
+        countryTo:
+          type: string
+          description: Country of arrival
+          example: Ukraine
+        cityTo:
+          type: string
+          description: City of arrival
+          example: Bukovel
+        flightDate:
+          type: string
+          format: date
+          description: Flight date
+          example: 2022-09-30
+        price:
+          type: integer
+          description: Flight ticket price
+          example: 200
