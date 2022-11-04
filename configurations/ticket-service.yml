@@ -5,14 +5,14 @@ spring:
   application:
     name: ticket-service
   kafka:
-    bootstrap-servers: http://localhost:9092
+    bootstrap-servers: http://93.188.37.126:9092
     consumer:
-      bootstrap-servers: http://localhost:9092
+      bootstrap-servers: http://93.188.37.126:9092
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       group-id: ticket-group
       auto-offset-reset: earliest
     producer:
-      bootstrap-servers: http://localhost:9092
+      bootstrap-servers: http://93.188.37.126:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
